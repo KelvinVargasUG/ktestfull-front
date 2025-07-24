@@ -1,244 +1,137 @@
-# Aplicación de Gestión de Proyectos - Frontend
+# KTestFull Frontend
 
-Una aplicación web moderna para gestionar proyectos y tareas, construida con Next.js 15, React 18 y TypeScript.
+Aplicación frontend desarrollada con Next.js para la gestión de proyectos y tareas.
 
-## 🚀 Características
+## 🚀 Instalación y Configuración
 
-### Autenticación
-- ✅ Login con JWT
-- ✅ Almacenamiento seguro de tokens
-- ✅ Redirección automática según estado de sesión
-- ✅ Middleware de protección de rutas
+### Prerrequisitos
 
-### Gestión de Proyectos
-- ✅ Dashboard con lista de proyectos
-- ✅ Crear, editar y eliminar proyectos
-- ✅ Vista detallada de cada proyecto
-- ✅ Estadísticas de tareas por proyecto
+- Node.js (versión 18 o superior)
+- npm o pnpm
 
-### Gestión de Tareas
-- ✅ CRUD completo de tareas
-- ✅ Estados: PENDING, IN_PROGRESS, DONE
-- ✅ Asignación de tareas a usuarios
-- ✅ Fechas de vencimiento
-- ✅ Filtros por estado
-- ✅ Ordenamiento por fecha
+### 1. Instalación de dependencias
 
-### UI/UX
-- ✅ Diseño responsive
-- ✅ Skeleton loaders
-- ✅ Estados vacíos informativos
-- ✅ Validación de formularios
-- ✅ Notificaciones de error
-- ✅ Componentes reutilizables
-
-## 🛠️ Tecnologías
-
-- **Framework**: Next.js 15 (App Router)
-- **UI**: React 18 + TypeScript
-- **Estilos**: Tailwind CSS + shadcn/ui
-- **Estado**: Zustand
-- **Formularios**: React Hook Form + Zod
-- **HTTP**: Fetch API nativo
-- **Iconos**: Lucide React
-
-## 📦 Instalación
-
-1. **Clonar el repositorio**
-\`\`\`bash
-git clone <repository-url>
-cd project-management-frontend
-\`\`\`
-
-2. **Instalar dependencias**
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+# o
+pnpm install
+```
 
-3. **Configurar variables de entorno**
-\`\`\`bash
-cp .env.example .env.local
-\`\`\`
+### 2. Configuración de variables de entorno
 
-Editar `.env.local`:
-\`\`\`env
-NEXT_PUBLIC_API_URL=http://localhost:3001/api
-\`\`\`
+Cree un archivo `.env.local` en la raíz del proyecto con la siguiente variable:
 
-4. **Ejecutar en desarrollo**
-\`\`\`bash
-npm run dev
-\`\`\`
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:8080/ktestfull
+```
 
-La aplicación estará disponible en `http://localhost:3000`
+Esta variable define la URL base del API backend que debe estar ejecutándose en el puerto 8080.
 
-## 🏗️ Estructura del Proyecto
+### 3. Ejecución en modo desarrollo
 
-\`\`\`
-├── app/                    # App Router de Next.js
-│   ├── dashboard/         # Página principal
-│   ├── projects/[id]/     # Detalle de proyecto
+Para levantar el servidor de desarrollo en el puerto 3001:
+
+```bash
+npm run dev -- -p 3001
+# o
+pnpm dev -- -p 3001
+```
+
+La aplicación estará disponible en: `http://localhost:3001`
+
+## 📂 Estructura del Proyecto
+
+```
+├── app/                    # Páginas y rutas (App Router)
+│   ├── admin/             # Páginas de administración
+│   ├── dashboard/         # Dashboard principal
 │   ├── login/            # Página de login
-│   └── layout.tsx        # Layout principal
+│   └── projects/         # Gestión de proyectos
 ├── components/           # Componentes reutilizables
+│   ├── admin/           # Componentes de admin
 │   ├── auth/            # Componentes de autenticación
 │   ├── layout/          # Componentes de layout
 │   ├── projects/        # Componentes de proyectos
 │   ├── tasks/           # Componentes de tareas
-│   └── ui/              # Componentes base (shadcn/ui)
+│   └── ui/              # Componentes de UI base
+├── hooks/               # Custom hooks
+├── lib/                 # Librerías y utilidades
 ├── store/               # Estado global (Zustand)
-│   ├── auth-store.ts    # Estado de autenticación
-│   ├── project-store.ts # Estado de proyectos
-│   └── task-store.ts    # Estado de tareas
-├── lib/                 # Utilidades
-│   └── api.ts          # Cliente API
-├── types/              # Definiciones TypeScript
-│   └── index.ts        # Tipos principales
-└── middleware.ts       # Middleware de Next.js
-\`\`\`
+├── types/               # Definiciones de TypeScript
+└── styles/              # Estilos globales
+```
 
-## 🔐 Autenticación
+## 🛠️ Tecnologías Utilizadas
 
-La aplicación utiliza JWT para autenticación:
+- **Next.js 14** - Framework de React
+- **TypeScript** - Tipado estático
+- **Tailwind CSS** - Framework de CSS
+- **Zustand** - Gestión de estado
+- **React Hook Form** - Manejo de formularios
+- **Zod** - Validación de schemas
+- **Lucide React** - Iconos
 
-1. **Login**: Envía credenciales al backend
-2. **Token**: Se almacena en localStorage y Zustand
-3. **Middleware**: Protege rutas automáticamente
-4. **Headers**: Se incluye en todas las peticiones API
+## 📋 Funcionalidades
 
-## 📱 Páginas y Funcionalidades
+### Gestión de Proyectos
+- ✅ Crear, editar y eliminar proyectos
+- ✅ Visualizar lista de proyectos
+- ✅ Asignar fechas de vencimiento a proyectos
 
-### Login (`/login`)
-- Formulario de autenticación
-- Validación con Zod
-- Redirección automática si ya está autenticado
+### Gestión de Tareas
+- ✅ Crear, editar y eliminar tareas
+- ✅ Asignar usuarios a tareas
+- ✅ Cambiar estados de tareas (Pendiente, En Progreso, Completada)
+- ✅ Asignar fechas de vencimiento a tareas
+- ✅ Filtrar tareas por estado
 
-### Dashboard (`/dashboard`)
-- Lista de todos los proyectos del usuario
-- Crear nuevo proyecto
-- Estadísticas básicas de cada proyecto
-- Navegación a detalle de proyecto
+### Administración de Usuarios
+- ✅ Visualizar lista de usuarios
+- ✅ Scroll infinito para paginación
+- ✅ Buscar usuarios
 
-### Detalle de Proyecto (`/projects/[id]`)
-- Información completa del proyecto
-- Estadísticas de tareas (total, pendientes, en progreso, completadas)
-- Lista de tareas con filtros
-- CRUD completo de tareas
-- Asignación de tareas a usuarios
+### Autenticación
+- ✅ Login de usuarios
+- ✅ Gestión de sesiones
 
-## 🎨 Componentes Principales
+## 🔧 Scripts Disponibles
 
-### Proyectos
-- `ProjectCard`: Tarjeta de proyecto con acciones
-- `ProjectDialog`: Modal para crear/editar proyectos
-- `ProjectSkeleton`: Loading state para proyectos
+```bash
+npm run dev        # Servidor de desarrollo
+npm run build      # Construcción para producción
+npm run start      # Servidor de producción
+npm run lint       # Linter de código
+```
 
-### Tareas
-- `TaskCard`: Tarjeta de tarea con estados y acciones
-- `TaskDialog`: Modal para crear/editar tareas
-- `TaskFilters`: Filtros y ordenamiento de tareas
-- `TaskSkeleton`: Loading state para tareas
+## 🌐 API Backend
 
-### UI
-- `EmptyState`: Estado vacío reutilizable
-- `Navbar`: Barra de navegación con usuario
-- Componentes de shadcn/ui
+El frontend se conecta al backend que debe estar ejecutándose en:
+`http://localhost:8080/ktestfull`
 
-## 🔄 Gestión de Estado
-
-### Auth Store
-\`\`\`typescript
-interface AuthState {
-  user: User | null
-  token: string | null
-  isAuthenticated: boolean
-  login: (email: string, password: string) => Promise<void>
-  logout: () => void
-  checkAuth: () => void
-}
-\`\`\`
-
-### Project Store
-\`\`\`typescript
-interface ProjectState {
-  projects: Project[]
-  currentProject: Project | null
-  loading: boolean
-  error: string | null
-  // CRUD operations...
-}
-\`\`\`
-
-### Task Store
-\`\`\`typescript
-interface TaskState {
-  tasks: Task[]
-  loading: boolean
-  filters: FilterState
-  // CRUD operations...
-}
-\`\`\`
-
-## 🌐 API Integration
-
-El cliente API (`lib/api.ts`) maneja:
-- Autenticación automática con JWT
-- Manejo de errores
-- Endpoints para proyectos, tareas y usuarios
-- Tipado completo con TypeScript
-
-## 📋 Scripts Disponibles
-
-\`\`\`bash
-npm run dev          # Desarrollo
-npm run build        # Build de producción
-npm run start        # Servidor de producción
-npm run lint         # Linting
-npm run type-check   # Verificación de tipos
-\`\`\`
-
-## 🚀 Despliegue
-
-### Vercel (Recomendado)
-1. Conectar repositorio a Vercel
-2. Configurar variables de entorno
-3. Deploy automático
-
-### Otros proveedores
-\`\`\`bash
-npm run build
-npm run start
-\`\`\`
-
-## 🔧 Configuración Adicional
-
-### ESLint + Prettier
-\`\`\`bash
-npm install --save-dev eslint-config-prettier prettier
-\`\`\`
-
-### Testing (Opcional)
-\`\`\`bash
-npm install --save-dev @testing-library/react @testing-library/jest-dom jest
-\`\`\`
+Asegúrese de que el backend esté funcionando antes de iniciar el frontend.
 
 ## 📝 Notas de Desarrollo
 
-- **Responsive**: Diseño mobile-first
-- **Accesibilidad**: Componentes accesibles con shadcn/ui
-- **Performance**: Lazy loading y optimizaciones de Next.js
-- **SEO**: Meta tags y estructura semántica
-- **Error Handling**: Manejo robusto de errores
-- **Loading States**: UX mejorada con skeletons
+- El proyecto utiliza App Router de Next.js 14
+- Los estados se manejan con Zustand para una mejor gestión
+- Los formularios usan React Hook Form con validación Zod
+- Los estilos se implementan con Tailwind CSS
+- La aplicación es completamente responsive
 
-## 🤝 Contribución
+## 🚀 Deploy
 
-1. Fork del proyecto
-2. Crear rama feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit cambios (`git commit -am 'Agregar nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Crear Pull Request
+Para ejecutar la aplicación usando Docker:
 
-## 📄 Licencia
+1. **Construir la imagen Docker:**
+```bash
+docker build -t app-ktestfull .
+```
 
-Este proyecto está bajo la Licencia MIT.
+2. **Ejecutar el contenedor:**
+```bash
+docker run -p 3001:3000 app-ktestfull
+```
+
+La aplicación estará disponible en: `http://localhost:3001`
+
+> **Nota:** El contenedor internamente usa el puerto 3000, pero se mapea al puerto 3001 del host.
